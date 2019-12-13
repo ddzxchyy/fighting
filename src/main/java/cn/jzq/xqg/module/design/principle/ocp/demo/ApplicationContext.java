@@ -3,6 +3,7 @@ package cn.jzq.xqg.module.design.principle.ocp.demo;
 import cn.jzq.xqg.module.design.principle.ocp.Alert;
 import cn.jzq.xqg.module.design.principle.ocp.AlertRule;
 import cn.jzq.xqg.module.design.principle.ocp.Notification;
+import lombok.Data;
 
 public class ApplicationContext {
     private AlertRule alertRule;
@@ -16,21 +17,24 @@ public class ApplicationContext {
         this.alert.addAlertHandler(new TpsAlertHandler(alertRule, notification));
     }
 
+
     public OcpAlert getAlert() {
         return alert;
     }
 
+    private static final ApplicationContext instance = new ApplicationContext();
+
     /**
      * 饿汉式单例
      */
-    private static final ApplicationContext instance = new ApplicationContext();
-
     private ApplicationContext() {
-        System.out.println(instance);
-        instance.initializeBeans();
+//        instance.initializeBeans();
     }
 
     public static ApplicationContext getInstance() {
+        if (instance.getAlert() == null) {
+            instance.initializeBeans();
+        }
         return instance;
     }
 }
