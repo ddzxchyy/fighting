@@ -1,9 +1,5 @@
 package cn.jzq.xqg.module.design.principle.ocp.demo;
 
-import cn.jzq.xqg.module.design.principle.ocp.AlertRule;
-import cn.jzq.xqg.module.design.principle.ocp.Notification;
-import lombok.Data;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,17 +9,16 @@ import java.util.List;
  * @author by jzq
  * @date 2019/12/12
  */
-@Data
 public class OcpAlert {
-    private List<AlertHandler> alertHandlers = new ArrayList<>();
+    private List<AbstractAlertHandler> alertHandlers = new ArrayList<>();
 
-    public void addAlertHandler(AlertHandler alertHandler) {
+    public void addAlertHandler(AbstractAlertHandler alertHandler) {
         this.alertHandlers.add(alertHandler);
     }
 
     public void check(ApiStatInfo apiStatInfo) {
-        for (AlertHandler handler : alertHandlers) {
-            handler.check(apiStatInfo);
+        for (AbstractAlertHandler handler : alertHandlers) {
+        handler.check(apiStatInfo);
         }
     }
 }

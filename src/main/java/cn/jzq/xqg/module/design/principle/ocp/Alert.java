@@ -1,5 +1,6 @@
 package cn.jzq.xqg.module.design.principle.ocp;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
@@ -7,14 +8,11 @@ import lombok.Data;
  * @date 2019/12/12
  */
 @Data
+@AllArgsConstructor
 public class Alert {
     private AlertRule rule;
     private Notification notification;
 
-    public Alert(AlertRule rule, Notification notification) {
-        this.rule = rule;
-        this.notification = notification;
-    }
 
     /**
      * 当接口的 TPS 超过某个预先设置的最大值时，以及当接口请求出错数大于某个最大允许值时，
@@ -28,10 +26,10 @@ public class Alert {
     public void check(String api, long requestCount, long errorCount, long durationOfSeconds) {
         long tps = requestCount / durationOfSeconds;
         if (tps > rule.getMatchedRule(api).getMaxTps()) {
-            notification.doNotify(NotificationEmergencyLevel.URGENCY, " TPS 超标");
+            notification.doNotify(NotificationEmergencyLevel.URGENCY, " TPS 警报");
         }
         if (errorCount > rule.getMatchedRule(api).getMaxErrorCount()) {
-            notification.doNotify(NotificationEmergencyLevel.SEVERE, "请求失败数超标");
+            notification.doNotify(NotificationEmergencyLevel.SEVERE, "请求失败数警报");
         }
     }
 }

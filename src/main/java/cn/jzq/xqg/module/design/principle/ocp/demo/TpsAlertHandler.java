@@ -5,11 +5,11 @@ import cn.jzq.xqg.module.design.principle.ocp.Notification;
 import cn.jzq.xqg.module.design.principle.ocp.NotificationEmergencyLevel;
 
 /**
- * tps 处理器
+ * tps 报警处理器
  *
  * @author jzq
  */
-public class TpsAlertHandler extends AlertHandler {
+public class TpsAlertHandler extends AbstractAlertHandler {
     public TpsAlertHandler(AlertRule rule, Notification notification) {
         super(rule, notification);
     }

@@ -11,11 +11,12 @@ public class OcpDemo2 {
         apiStatInfo.setDurationOfSeconds(1);
         apiStatInfo.setErrorCount(100);
         apiStatInfo.setRequestCount(1000);
-        ApplicationContext context  = ApplicationContext.getInstance();
+        ApplicationContext context = ApplicationContext.getInstance();
         OcpAlert alert = context.getAlert();
         alert.check(apiStatInfo);
-
         ApplicationContext context1 = ApplicationContext.getInstance();
         context1.getAlert();
+        String msg = "(map (+) (\"foo\"))";
+
     }
 }
