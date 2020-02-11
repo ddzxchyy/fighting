@@ -1,6 +1,6 @@
 # 单一职责
 
-A class or module should have a single reponsibility.
+A class or module should have a single responsibility.
 一个类或者模块只负责完成一个职责。
 
 
