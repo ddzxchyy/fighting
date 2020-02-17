@@ -8,6 +8,7 @@ class XqgApplicationTests {
 
     @Test
     void contextLoads() {
+        System.out.println("xxx");
     }
 
 }
