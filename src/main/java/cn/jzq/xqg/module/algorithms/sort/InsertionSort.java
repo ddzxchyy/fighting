@@ -31,13 +31,15 @@ public class InsertionSort {
             }
             // 插入 key
             arr[j + 1] = key;
-            System.out.println(Arrays.toString(arr));
+//            System.out.println(Arrays.toString(arr));
         }
     }
 
     public static void main(String[] args) {
-        int[] arr = {4, 5, 6, 1, 3, 2};
+        int[] arr = ArraysUtil.getRandIntArray(100_000);
+        long startTime = System.currentTimeMillis();
         insertSort(arr);
-//        System.out.println(Arrays.toString(arr));
+        long endTime = System.currentTimeMillis();
+        System.out.println(endTime - startTime);
     }
 }
