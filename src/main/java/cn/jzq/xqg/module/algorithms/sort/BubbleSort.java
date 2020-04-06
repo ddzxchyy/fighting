@@ -14,7 +14,7 @@ public class BubbleSort {
     public static void bubbleSort(int[] arr) {
         int arrLength = arr.length;
         /*
-         * 有标志位 10K 条数据耗时在 130 ms 左右, 无标志位平均耗时 130 ms。
+         * 有标志位 10K 条数据耗时在 130 ms 左右, 无标志位平均耗时 180 ms。
          */
         boolean isNoSwapped = true;
         for (int i = 0; i < arrLength; i++) {
@@ -47,7 +47,7 @@ public class BubbleSort {
     }
 
     public static void main(String[] args) {
-        int[] arr = getRandIntArray(100_000);
+        int[] arr = getRandIntArray(10_000);
         long startTime = System.currentTimeMillis();
         bubbleSort(arr);
         long endTime = System.currentTimeMillis();

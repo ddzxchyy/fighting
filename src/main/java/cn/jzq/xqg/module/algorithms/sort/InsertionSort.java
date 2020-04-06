@@ -19,19 +19,23 @@ public class InsertionSort {
      * 2. 满足条件，则移动循环不变式中对应的元素
      * 3. 插入 key
      */
-    public static void insertSort(int[] arr) {
-        for (int i = 1; i <= arr.length - 1; i++) {
+    public static void insertSort(int[] a) {
+        int lastIndex = a.length - 1;
+        // 刚开始循环不变式为 [a[0]], 待排序区间为 [a[1], a[lastIndex]]
+        for (int i = 1; i <= lastIndex; i++) {
             int j = i - 1;
-            int key = arr[i];
-            // 循环不变式 b[0] 到 b[j], 待排序区间 c[i] 到 c[arr.length - 1]
-            while (j >= 0 && key < arr[j]) {
-                // 如果要插入的 key 小于与之比较的循环不变式 b[j], 则将 b[j] 后移一位
-                arr[j + 1] = arr[j];
+            int key = a[i];
+            // 循环不变式为 [a[0], a[j]], 待排序区间 a[[i], a[lastIndex]]
+            while (j >= 0 && key < a[j]) {
+                // 如果要插入的 key 小于与之比较的循环不变式值 a[j], 则将 a[j] 后移一位
+                // 第一次移动时，a[j+1] 的值等同于 key，已经被记录下来了
+                // 最后把 key 插入到应在在的位置就可以了
+                a[j + 1] = a[j];
+                // j-- key 与 循环不变式的前一个值做比较
                 j--;
             }
             // 插入 key
-            arr[j + 1] = key;
-//            System.out.println(Arrays.toString(arr));
+            a[j + 1] = key;
         }
     }
 
