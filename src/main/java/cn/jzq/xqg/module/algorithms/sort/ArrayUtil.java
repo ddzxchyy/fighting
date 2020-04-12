@@ -2,7 +2,7 @@ package cn.jzq.xqg.module.algorithms.sort;
 
 import cn.hutool.core.util.RandomUtil;
 
-public class ArraysUtil {
+public class ArrayUtil {
     public static void swap(int[] arr, int i, int j) {
         int temp = arr[i];
         arr[i] = arr[j];
