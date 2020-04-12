@@ -22,16 +22,33 @@ public class MergeSort {
 //        merge();
     }
 
+    /**
+     * 比较两堆扑克牌最顶上的一张牌，将小的那张牌面朝下的放置到输出堆上
+     */
     private static void merge(int[] a, int p, int q, int r) {
         int leftArrayLength = q - p + 1;
         int rightArrayLength = r - q;
-        int[] leftArray = new int[leftArrayLength];
-        int[] rightArray = new int[rightArrayLength];
+        int[] leftArray = new int[leftArrayLength + 1];
+        int[] rightArray = new int[rightArrayLength + 1];
         for (int i = 0; i < leftArrayLength; i++) {
             leftArray[i] = a[p + i - 1];
         }
         for (int j = 0; j < rightArrayLength; j++) {
             rightArray[j] = a[q + j];
+        }
+        leftArray[leftArrayLength] = Integer.MAX_VALUE;
+        rightArray[rightArrayLength] = Integer.MAX_VALUE;
+        // 比较左右数组，将较大值赋给数组a
+        int i = 0;
+        int j = 0;
+        for (int k = p; k < r; k++) {
+            if (leftArray[i] <= rightArray[j]) {
+                a[k] = leftArray[i];
+                i++;
+            } else {
+                a[k] = rightArray[j];
+                j++;
+            }
         }
     }
 }
