@@ -47,7 +47,7 @@ public class BubbleSort {
     }
 
     public static void main(String[] args) {
-        int[] arr = getRandIntArray(10_000);
+        int[] arr = getRandIntArray(100_000);
         long startTime = System.currentTimeMillis();
         bubbleSort(arr);
         long endTime = System.currentTimeMillis();

@@ -12,7 +12,7 @@ public class ArrayUtil {
     public static int[] getRandIntArray(int length) {
         int[] arr = new int[length];
         for (int i = 0; i < length; i++) {
-            arr[i] = RandomUtil.randomInt(1, 1000);
+            arr[i] = RandomUtil.randomInt(1, 100_000);
         }
         return arr;
     }
