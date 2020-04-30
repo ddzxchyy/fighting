@@ -6,6 +6,7 @@ package cn.jzq.xqg.module.algorithms.dynamic;
  * 第一步按照顺序放一个皇后，然后第二步符合要求放第 2 个皇后，如果没有位置符合要求，
  * 那么就要改变第一个皇后的位置，重新放第 2 个皇后的位置，直到找到符合条件的位置就可以了。
  * 回溯算法
+ *
  */
 public class EightQueensQuestion {
 
@@ -13,6 +14,7 @@ public class EightQueensQuestion {
         calRowQueen(0);
         System.out.println(count);
     }
+
 
     static int[] result = new int[8];
     static int count = 0;
