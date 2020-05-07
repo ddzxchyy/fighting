@@ -2,6 +2,8 @@ package cn.jzq.xqg.module.algorithms.dynamic;
 
 /**
  * 矩阵最短路径
+ * 经过最后一个点，必然会经过它左边的点或者上边的点，
+ * 这样问题的解变成了：最后一个点的距离 + min(左边点经历的距离, 上边点经历的距离)
  */
 public class MinDist {
 
