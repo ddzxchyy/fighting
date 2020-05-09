@@ -44,6 +44,7 @@ public class QuickSort {
 
     public static void main(String[] args) {
         int[] a = ArrayUtil.getRandIntArray(8);
+//        int[] a = {4, 3, 5, 8, 7, 10, 9, 6};
         sort(a);
         System.out.println(Arrays.toString(a));
     }

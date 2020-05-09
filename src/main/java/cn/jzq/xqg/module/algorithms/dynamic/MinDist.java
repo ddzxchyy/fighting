@@ -18,7 +18,7 @@ public class MinDist {
     //写出递推公式，找到终止条件
     // min_dist(i, j) = w[i][j] + min(min_dist(i, j-1), min_dist(i-1, j));
     public static void minDist(int i, int j, int dist, int[][] w, int n) {
-        if (i == n  && j == n ) {
+        if (i == n && j == n) {
             if (dist < min) {
                 min = dist;
             }
@@ -31,4 +31,19 @@ public class MinDist {
             minDist(i, j + 1, dist + w[i][j], w, n);
         }
     }
+
+    public static int dynamicMinDist(int[][] matrix, int n) {
+        int sum = 0;
+        int[][] states = new int[n][n];
+        // 初始化第一行第一列的数据
+        if (n >= 0) System.arraycopy(matrix[0], 0, states[0], 0, n);
+        for (int i = 0; i < n; i++) {
+            states[i][0] = matrix[i][0];
+        }
+        // 初始化第一行第一列的数据
+        // 初始化第一行第一列的数据
+        return sum;
+    }
+
+
 }
