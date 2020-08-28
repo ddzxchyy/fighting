@@ -8,7 +8,8 @@ public class CutRod {
     public static void main(String[] args) {
         int[] p = {1, 5, 8, 9, 10, 17, 17, 20, 24, 30};
 //        cutRod(p, 4);
-        System.out.println( bottomUpCutRod(p, 4));
+        System.out.println(memoizedCutRod(p, 4));
+//        System.out.println( bottomUpCutRod(p, 4));
     }
 
     /**
@@ -46,5 +47,34 @@ public class CutRod {
         }
         // 返回最优解
         return r[n];
+    }
+
+    /**
+     * 带备忘录的自顶向下实现
+     */
+    public static int memoizedCutRod(int[] p, int n) {
+        int[] r = new int[n + 1];
+        for (int i = 0; i <= n; i++) {
+            r[i] = Integer.MIN_VALUE;
+        }
+        r[0] = 0;
+        return memoizedCutRodAux(p, n, r);
+    }
+
+    private static int memoizedCutRodAux(int[] p, int n, int[] r) {
+        if (r[n] >= 0) {
+            return r[n];
+        }
+        int q;
+        // 长度为 0 时，收益为 0
+        if (n == 0) {
+            return 0;
+        }
+        q = Integer.MIN_VALUE;
+        for (int i = 0; i < n; i++) {
+            q = Math.max(q, p[i] + memoizedCutRodAux(p, n - i - 1, r));
+        }
+        r[n] = q;
+        return q;
     }
 }

@@ -1,5 +1,7 @@
 package cn.jzq.xqg.module.algorithms.dynamic;
 
+import cn.hutool.crypto.SecureUtil;
+
 public class PackageQuestion {
 
     public static void main(String[] args) {
@@ -62,7 +64,9 @@ public class PackageQuestion {
                     states[i][j] = states[i - 1][j];
                 }
             }
-            for (int j = 0; j <= w - weight[i]; j++) {
+            // 在装入第 i 个物品后，剩余的最大重量
+            int remainingItemMaxWeight = w - weight[i];
+            for (int j = 0; j <= remainingItemMaxWeight; j++) {
                 boolean lastDecision = states[i - 1][j];
                 if (lastDecision) {
                     // 在上次的达到的状态，后移第 i 个物品的重量的位置
@@ -70,7 +74,7 @@ public class PackageQuestion {
                 }
             }
         }
-        // 最后一行就是如果能达到的状态集合
+        // 最后一行就是能达到的状态集合
         for (int i = w; i > 0; i--) {
             if (states[n - 1][i]) {
                 return i;

@@ -1,0 +1,15 @@
+spring:
+  mqtt:
+    # subscribe 订阅
+    #订阅 - 用户名
+    username: admin
+    #订阅 - 密码
+    password: password
+      #订阅 - 服务器连接地址，如果有多个，用逗号隔开，如：tcp://127.0.0.1:61613,tcp://192.168.2.133:61613
+    url: tcp://106.14.80.106:18083
+    #订阅 - 连接服务器默认客户端ID
+    client-id: mqttId-1
+    default:
+        #订阅 - 默认的消息推送主题，实际可在调用接口时指定
+      topic: hangge
+        #订阅 - 连接超时

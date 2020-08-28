@@ -8,5 +8,6 @@
   * [计数排序](algorithms/sort/countingSort.md)
 
 
-
+* [动态规划](algorithms/dynamic/readme.md)
+  * [动态规划](algorithms/dynamic/sort1.md)  
 

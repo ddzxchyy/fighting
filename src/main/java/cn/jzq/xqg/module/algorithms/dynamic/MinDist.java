@@ -42,6 +42,11 @@ public class MinDist {
         }
         // 初始化第一行第一列的数据
         // 初始化第一行第一列的数据
+        for (int i = 1; i < n; ++i) {
+            for (int j = 1; j < n; ++j) {
+                states[i][j] = matrix[i][j] + Math.min(states[i][j - 1], states[i - 1][j]);
+            }
+        }
         return sum;
     }
 

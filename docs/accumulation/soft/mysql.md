@@ -34,13 +34,11 @@ port=3306
 
 ```
 
-1. 在根目录创建 my.ini 文件
-
-2. 初始化 mysql `mysqld --initialize`
-
-3. 安装 mysql 服务  `mysqld - install`
-
-4. 启动 mysql 服务 `net start mysql`
+1. 微软官网，下载Visual Studio 2013 [文件地址](https://www.microsoft.com/zh-CN/download/details.aspx?id=40784)
+2. 在根目录创建 my.ini 文件
+3. 初始化 mysql `mysqld --initialize`
+4. 安装 mysql 服务  `mysqld - install`
+5. 启动 mysql 服务 `net start mysql`
 
 
 
@@ -48,8 +46,8 @@ port=3306
 
 1. 找到初始密码，在 data/*.err 文件中
 2.  登录 mysql -u root -p
-3.  修改初始密码 `ALTER USER ``'root'``@``'localhost'` `IDENTIFIED BY ``'root'``;`
-4.  修改密码 `update user set authentication_string=password('123') where user='root';`
+3.  修改初始密码 ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';
+4.  修改密码 update user set authentication_string=password('qhcy!2020') where user='root';
 
 ## 开启远程访问
 

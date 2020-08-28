@@ -27,7 +27,7 @@ public class QuickSort {
      * partition 方法需要实现以下功能：
      * 1. 返回主元索引，即下一次快排数组的最后索引
      * 2. 遍历数组，将数组分为小于主元的部分a[p, i]和大于主元的部分 a[i + 1,j]
-     * 3. 将主元交换合适的位置
+     * 3. 将主元交换到合适的位置
      **/
     private static int partition(int[] a, int p, int r) {
         int pivot = a[r];
