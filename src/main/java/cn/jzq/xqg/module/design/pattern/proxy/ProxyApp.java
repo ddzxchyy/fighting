@@ -14,14 +14,12 @@ import java.lang.reflect.Proxy;
 public class ProxyApp {
 
     public static void main(String[] args) {
-
-        // 动态代理
-//        UserRepository userRepository = (UserRepository) new ApplicationContext()
-//                .createProxy(new UserRepositoryImpl());
-        UserRepository proxyUserRepository = (UserRepository) Proxy.newProxyInstance(UserRepositoryImpl.class.getClassLoader(),
-                UserRepositoryImpl.class.getInterfaces(),
-                new LogProxyHandler(new UserRepositoryImpl()));
+        UserRepository proxyUserRepository = (UserRepository) Proxy
+                .newProxyInstance(UserRepositoryImpl.class.getClassLoader(),
+                        UserRepositoryImpl.class.getInterfaces(),
+                        new LogProxyHandler(new UserRepositoryImpl()));
+        proxyUserRepository.getUser(1);
         boolean isInstanceof = proxyUserRepository instanceof UserRepositoryImpl;
-        System.out.println("是否是 UserRepositoryImpl 的示例: " + isInstanceof);
+        System.out.println("是否是 UserRepositoryImpl 的实例: " + isInstanceof);
     }
 }
