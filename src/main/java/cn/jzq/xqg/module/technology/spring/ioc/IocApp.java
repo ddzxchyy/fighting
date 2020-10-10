@@ -9,4 +9,9 @@ package cn.jzq.xqg.module.technology.spring.ioc;
  * 自动注入到需要它们的对象中去
  */
 public class IocApp {
+
+    public static void main(String[] args) {
+        Duck duck = new Duck();
+
+    }
 }
