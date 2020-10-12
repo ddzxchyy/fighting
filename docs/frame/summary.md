@@ -7,6 +7,7 @@
 * [springboot](frame/springboot/readme.md)
   
   * [logging](frame/springboot/logging.md)  
-  
+  * [全局异常](frame/springboot/global-exception.md)
 
+  
   
