@@ -66,7 +66,11 @@ public class R implements Serializable {
     }
 
     public static R ok() {
-        return new R();
+        R r = new R();
+        r.setCode(0);
+        r.setMsg("success");
+        r.setData(emptyJson);
+        return r;
     }
 
 
