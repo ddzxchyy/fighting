@@ -1,4 +1,3 @@
 # hello principle
 
-整理自：[设计模式之美](https://time.geekbang.org/column/article/171771)
-
+找出会变化的部分，把它们从不变的部分中分离出来。
