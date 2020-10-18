@@ -20,6 +20,10 @@ public class IocApp {
 
     @GetMapping("/user/{userId}")
     public R getUserInfo(@PathVariable("userId") Integer userId) {
-       return R.ok();
+       return R.ok()
+    }
+    public static void main(String[] args) {
+        Duck duck = new Duck();
+
     }
 }
