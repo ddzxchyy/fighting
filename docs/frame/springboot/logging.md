@@ -46,6 +46,12 @@
 
 在 Spring Boot 内部，保持和 Spring 一致，采用 JCL 日志**门面**框架来记录日志。但是，其 [`logging`](https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/logging/package-info.java) 包下，提供了对 JUL、Log4j2、Logback 日志**实现**框架的封装，提供默认的日志配置。
 
+Spring Boot 按如下“约定规则”加载配置文件：
+
+- Logback ：对应 `logback-spring.xml`、`logback-spring.groovy`、`logback.xml`、`logback.groovy` 配置文件。
+- Log4j2 ：对应 `log4j2-spring.xml`、`log4j2.xml` 配置文件。
+- JUL ：对应 `logging.properties` 配置文件。
+
 
 
 ## 2. 快速入门

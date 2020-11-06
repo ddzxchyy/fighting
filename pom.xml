@@ -29,7 +29,11 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+<<<<<<< HEAD
+            <artifactId>spring-boot-starter-web</artifactId>
+=======
             <artifactId>spring-boot-starter-amqp</artifactId>
+>>>>>>> a4b5f07dca4abcf19e20b89e2b10dc319bd0cc75
         </dependency>
 
 
