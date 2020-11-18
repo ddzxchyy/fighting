@@ -4,7 +4,7 @@
 
 
 
-## 简介
+## 1、简介
 
 Spring Security 是一个框架，侧重于为 Java 应用程序提供身份认证(authentication)和授权(authorization)。官网介绍如下：
 
@@ -37,7 +37,7 @@ Spring Security 是一个框架，侧重于为 Java 应用程序提供身份认�
 
 
 
-## 快速入门
+## 2、快速入门
 
 ### 环境准备 
 
@@ -66,8 +66,8 @@ spring:
   security:
     # 配置默认的 InMemoryUserDetailsManager 的用户账号与密码。
     user:
-      name: user # 账号
-      password: user # 密码
+      name: admin # 账号
+      password: admin # 密码
       roles: ADMIN # 拥有角色
 ```
 
@@ -95,11 +95,9 @@ public class AdminController {
 
 因为我们没有**自定义**登录界面，所以默认会使用 [DefaultLoginPageGeneratingFilter](https://github.com/spring-projects/spring-security/blob/master/web/src/main/java/org/springframework/security/web/authentication/ui/DefaultLoginPageGeneratingFilter.java) 类，生成上述界面。
 
-录完成后，因为 Spring Security 会记录被拦截的访问地址，所以浏览器自动动跳转到 hello 接口。
+登录完成后，因为 Spring Security 会记录被拦截的访问地址，所以浏览器自动动跳转到 hello 接口。
 
-
-
-## 进阶篇
+## 3、进阶篇
 
 在进阶篇，我们实现来 spring security 的认证和授权功能。
 
@@ -187,7 +185,13 @@ protected void configure(HttpSecurity http) throws Exception {
 
 
 
-## FAQ
+### UserDetailsService
+
+通过实现 UserDetailsService 接口实现用户认证。代码见 `spring-security-userdetail` 项目。
+
+密码必须使用 PasswordEncoder 进行编码，否则会报错。在 WebSecurityConfigurer 中注入 `PasswordEncoder` 。
+
+## 4、FAQ
 
 1、Spring Security 主要解决什么问题？
 

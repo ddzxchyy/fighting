@@ -6,6 +6,8 @@ mysql 5.7 windows 下安装
 
 my.ini
 
+不要自己创建 data 目录
+
 ```ini
 [mysqld]
 # 设置3306端口
@@ -36,18 +38,28 @@ port=3306
 
 1. 微软官网，下载Visual Studio 2013 [文件地址](https://www.microsoft.com/zh-CN/download/details.aspx?id=40784)
 2. 在根目录创建 my.ini 文件
-3. 初始化 mysql `mysqld --initialize`
-4. 安装 mysql 服务  `mysqld - install`
+3.  以管理员身份运行cmd, 初始化在 bin 目录下  `mysqld --initialize`
+4. 安装 mysql 服务  `mysqld --install`
 5. 启动 mysql 服务 `net start mysql`
 
 
+
+如果出现错误，请用命令 `mysqld --console` 查看日志
+
+比如出现如下错误：
+
+Can't start server: Bind on TCP/IP port: No such file or directory 
+
+Do you already have another mysqld server running on port: 3306 ? 
+
+端口被占用，使用命令 `netstat -aon|findstr "3306"` 查看 3306 端口的情况，找到 pid 使用命令  `taskkill /f /pid 具体的pid` 杀掉进程
 
 ## 登录
 
 1. 找到初始密码，在 data/*.err 文件中
 2.  登录 mysql -u root -p
 3.  修改初始密码 ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';
-4.  修改密码 update user set authentication_string=password('qhcy!2020') where user='root';
+4.  修改密码 update user set authentication_string=password('root') where user='root';
 
 ## 开启远程访问
 
