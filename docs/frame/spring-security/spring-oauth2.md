@@ -1,6 +1,6 @@
 # Spring OAuth2
 
-原创出处 http://www.iocoder.cn/Spring-Security/OAuth2-learning/?vip
+[原创出处](http://www.iocoder.cn/Spring-Security/OAuth2-learning/?vip)
 
 ## OAuth 是什么
 
