@@ -2,7 +2,42 @@
 
 [原文](http://www.iocoder.cn/Spring-Security/laoxu/Architecture-Overview/)
 
-介绍技术的文章，大多数是Code First，提出一个需求，介绍一个思路，解决一个问题，分析一下源码，大多如此。而学习一个体系的技术，我推荐 Architecture First
+介绍技术的文章，大多数是Code First，提出一个需求，介绍一个思路，解决一个问题，分析一下源码，大多如此。而学习一个体系的技术，我推荐 Architecture /ˈɑːr.kə.tek.tʃɚ/ First
+
+
+
+
+
+```mermaid
+classDiagram
+AuthenticationManager <|.. ProviderManager
+ProviderManager --> AuthenticationProvider1
+ProviderManager --> AuthenticationProvider : 委托
+ProviderManager --> AuthenticationProvider3
+AuthenticationProvider <|.. DaoAuthenticationProvider
+DaoAuthenticationProvider --> UserDetailsService
+UserDetails <.. UserDetailsService : 获取
+
+class AuthenticationManager {
+	+ authenticate()
+}
+<<interface>> AuthenticationManager
+class ProviderManager {
+	
+}
+class AuthenticationProvider {
+	
+}
+<<interface>> AuthenticationProvider
+
+class DaoAuthenticationProvider {
+	
+}
+```
+
+
+
+
 
 ## 1、核心组件
 
@@ -73,6 +108,43 @@ for (AuthenticationProvider provider : getProviders()) {
 
 
 
+### 1.4 ProviderManager
+
+ProviderManager 实现 AuthenticationManager 接口。通过委托给  AuthenticationProvider 的方式实现认证功能。
+
+
+
+### 1.5 DaoAuthenticationProvider
+
+最最常用的一个 ProviderManager 的实现类。Dao正是数据访问层的缩写，也暗示了这个身份认证器的实现思路。
+
+
+
+### 1.6 UserDetails 与 UserDetailsService
+
+UserDetails 它代表了最详细的用户信息，这个接口涵盖了一些必要的用户信息字段，具体的实现类对它进行了扩展。
+
+```java
+public interface UserDetails extends Serializable {
+
+   Collection<? extends GrantedAuthority> getAuthorities();
+
+   String getPassword();
+
+   String getUsername();
+
+   boolean isAccountNonExpired();
+
+   boolean isAccountNonLocked();
+
+   boolean isCredentialsNonExpired();
+
+   boolean isEnabled();
+}
+```
+
+它和 Authentication 接口很类似，比如它们都拥有 username，authorities，区分他们也是本文的重点内容之一。Authentication 的 getCredentials() 与 UserDetails 中的 getPassword() 需要被区分对待，前者是用户提交的密码凭证，后者是用户正确的密码，认证器其实就是对这两者的比对。Authentication中的getAuthorities() 实际是由 UserDetails 的 getAuthorities() 传递而形成的。还记得 Authentication 接口中的 getUserDetails() 方法吗？其中的 UserDetails 用户详细信息便是经过了 AuthenticationProvider 之后被填充的。
+
 ## 2、Spring Security 是如何完成身份认证的？
 
 demo 见 spring-security-userdetail 项目下的 SecurityAuthenticationProcessDemo.java 文件
@@ -87,3 +159,59 @@ UsernamePasswordAuthenticationToken
 
 （4） SecurityContextHolder 安全上下文容器将第 3 步填充了信息的 Authentication，通过SecurityContextHolder.getContext().setAuthentication()方法，设置到其中。
 
+
+
+## 3、 类图
+
+
+
+```mermaid
+classDiagram
+AuthenticationManager <|.. ProviderManager
+ProviderManager --> AuthenticationProvider1
+ProviderManager --> AuthenticationProvider : 委托
+ProviderManager --> AuthenticationProvider3
+AuthenticationProvider <|.. DaoAuthenticationProvider
+
+DaoAuthenticationProvider --> UserDetailsService : 关联
+DaoAuthenticationProvider ..> Authentication : 依赖
+DaoAuthenticationProvider ..> UserDetails : 依赖
+
+UserDetails <.. UserDetailsService : 获取
+
+class AuthenticationManager {
+	+ authenticate() 
+}
+<<interface>> AuthenticationManager
+class ProviderManager {
+	+ authenticate() 
+}
+class AuthenticationProvider {
+	+ authenticate() 
+}
+<<interface>> AuthenticationProvider
+
+class DaoAuthenticationProvider {
+	+ authenticate() 
+}
+
+class UserDetailsService {
+    + loadUserByUsername()
+}
+```
+
+
+
+
+
+## FAQ
+
+1、Authentication 与 UserDetails 的区别
+
+答：见 1.6
+
+
+
+2、UserDetailsService 和 AuthenticationProvider 两者的职责
+
+UserDetailsService  只负责加载用户信息。 AuthenticationProvider 负责认证。
