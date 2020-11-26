@@ -40,7 +40,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-<!--        <dependency>-->
+        <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjrt -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>1.9.6</version>
+        </dependency>
+
+        <!--        <dependency>-->
 <!--            <groupId>mysql</groupId>-->
 <!--            <artifactId>mysql-connector-java</artifactId>-->
 <!--        </dependency>-->

@@ -1,0 +1,8 @@
+###
+GET http://localhost:3010/order/1
+Content-Type: application/json
+Authorization: bearer c48ed337-5a0a-44cd-8682-d695b1b289aa
+
+{
+	"hello": "world"
+}

@@ -1,11 +1,15 @@
 package cn.jzq.springsecurityoauth.config;
 
+import cn.jzq.springsecurityoauth.config.exception.UserOAuth2WebResponseExceptionTranslator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.error.OAuth2AuthenticationEntryPoint;
+import org.springframework.security.web.AuthenticationEntryPoint;
 
 /**
  * 资源服务器
@@ -18,14 +22,25 @@ public class Oauth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
 
 
     @Override
-    public void configure(ResourceServerSecurityConfigurer resources) {
-        resources.resourceId(DEMO_RESOURCE_ID).stateless(true);
+    public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
+        // 定义异常转换类生效
+        AuthenticationEntryPoint authenticationEntryPoint = new OAuth2AuthenticationEntryPoint();
+        ((OAuth2AuthenticationEntryPoint) authenticationEntryPoint).setExceptionTranslator(new UserOAuth2WebResponseExceptionTranslator());
+        resources.authenticationEntryPoint(authenticationEntryPoint)
+                .resourceId(DEMO_RESOURCE_ID).stateless(true);
     }
+
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
         // @formatter:off
         http
+                .csrf().disable()
+//                .exceptionHandling()
+                // 定义的不存在access_token时候响应
+//                .authenticationEntryPoint(new SecurityAuthenticationEntryPoint())
+//                .accessDeniedHandler(new CustomAccessDeniedHandler())
+//                .and()
                 // Since we want the protected resources to be accessible in the UI as well we need
                 // session creation to be allowed (it's disabled by default in 2.0.6)
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
