@@ -1,4 +1,4 @@
-package cn.jzq.springsecurityoauth.config;
+package cn.jzq.springsecurityoauth.filter;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;

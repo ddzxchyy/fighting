@@ -1,4 +1,4 @@
-package cn.jzq.springsecurityoauth.config.exception;
+package cn.jzq.springsecurityoauth.exception;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -16,11 +16,8 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import java.io.IOException;
 
 /**
- * @Description: 资源服务器异常自定义捕获
- * @ProjectName: spring-parent
- * @Package: com.yaomy.security.oauth2.exception.OAuth2ServerWebResponseExceptionTranslator
- * @Date: 2019/7/17 14:49
- * @Version: 1.0
+ * 资源服务器异常自定义捕获
+ * 参考默认实现 DefaultWebResponseExceptionTranslator
  */
 @Component
 public class UserOAuth2WebResponseExceptionTranslator implements WebResponseExceptionTranslator {

@@ -1,4 +1,4 @@
-package cn.jzq.springsecurityoauth.config;
+package cn.jzq.springsecurityoauth.web;
 
 import cn.jzq.fightingcommon.uitls.R;
 import lombok.AllArgsConstructor;
@@ -13,6 +13,9 @@ import java.security.Principal;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * 重写 oauth/token 接口实现自定义返回
+ */
 @RestController
 @RequestMapping("/oauth")
 @AllArgsConstructor

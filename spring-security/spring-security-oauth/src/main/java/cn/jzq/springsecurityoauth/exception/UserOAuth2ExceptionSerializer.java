@@ -1,4 +1,4 @@
-package cn.jzq.springsecurityoauth.config.exception;
+package cn.jzq.springsecurityoauth.exception;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
@@ -10,6 +10,9 @@ import java.util.Map;
 
 /**
  * 序列化异常类
+ * 此处可以改写 status 为 code
+ *
+ * @author jzq
  */
 public class UserOAuth2ExceptionSerializer extends StdSerializer<UserOAuth2Exception> {
 

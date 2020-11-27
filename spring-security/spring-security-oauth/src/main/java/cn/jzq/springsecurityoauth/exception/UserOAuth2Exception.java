@@ -1,4 +1,4 @@
-package cn.jzq.springsecurityoauth.config.exception;
+package cn.jzq.springsecurityoauth.exception;
 
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;

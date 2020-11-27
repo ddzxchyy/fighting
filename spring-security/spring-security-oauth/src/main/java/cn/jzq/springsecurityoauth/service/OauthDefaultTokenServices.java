@@ -1,4 +1,4 @@
-package cn.jzq.springsecurityoauth;
+package cn.jzq.springsecurityoauth.service;
 
 import java.util.Date;
 import java.util.Set;

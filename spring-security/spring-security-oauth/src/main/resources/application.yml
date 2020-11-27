@@ -1,5 +1,5 @@
 server:
-  port: 3010
+  port: 3300
 spring:
   redis:
     database: 0

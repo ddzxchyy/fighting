@@ -1,4 +1,4 @@
-package cn.jzq.springsecurityoauth.config.filter;
+package cn.jzq.springsecurityoauth.filter;
 
 import org.springframework.http.HttpMethod;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -16,10 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @Description: token端点过滤器
- * @ProjectName: spring-parent
- * @Date: 2019/7/30 16:33
- * @Version: 1.0
+ * token端点过滤器
  */
 @Component
 public class OAuthTokenAuthenticationFilter extends GenericFilterBean {
@@ -27,7 +24,7 @@ public class OAuthTokenAuthenticationFilter extends GenericFilterBean {
 
     private RequestMatcher requestMatcher;
 
-    public OAuthTokenAuthenticationFilter(){
+    public OAuthTokenAuthenticationFilter() {
         //OrRequestMatcher or组合多个RequestMatcher
         this.requestMatcher = new OrRequestMatcher(
                 new AntPathRequestMatcher(OAUTH_TOKEN_URL, HttpMethod.POST.name())
@@ -38,8 +35,8 @@ public class OAuthTokenAuthenticationFilter extends GenericFilterBean {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
-        if(requestMatcher.matches(request)){
-            if(false){
+        if (requestMatcher.matches(request)) {
+            if (false) {
                 response.getWriter().println("验证码或者图形验证码不正确");
                 return;
             }

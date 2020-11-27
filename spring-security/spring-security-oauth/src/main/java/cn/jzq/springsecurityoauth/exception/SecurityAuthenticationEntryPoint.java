@@ -1,6 +1,5 @@
-package cn.jzq.springsecurityoauth.config.filter;
+package cn.jzq.springsecurityoauth.exception;
 
-import cn.hutool.json.JSON;
 import cn.jzq.fightingcommon.uitls.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.AuthenticationException;

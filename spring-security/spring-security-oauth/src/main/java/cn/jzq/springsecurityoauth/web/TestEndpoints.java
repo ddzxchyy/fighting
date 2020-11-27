@@ -1,4 +1,4 @@
-package cn.jzq.springsecurityoauth;
+package cn.jzq.springsecurityoauth.web;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,7 +20,7 @@ public class TestEndpoints {
     public String getOrder(@PathVariable String id) {
 	    //for debug
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return "order id : " + id;
+        return "details : " + authentication.getDetails();
     }
 
 }
