@@ -14,12 +14,15 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.ClientDetailsService;
+import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.error.WebResponseExceptionTranslator;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 import org.springframework.security.web.AuthenticationEntryPoint;
 
+import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,23 +40,25 @@ public class Oauth2AuthorizationServerConfiguration extends AuthorizationServerC
     private final AuthenticationManager authenticationManager;
     private final WebResponseExceptionTranslator webResponseExceptionTranslator;
     private final AuthenticationEntryPoint authenticationEntryPoint;
+    private final DataSource dataSource;
 
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         //配置两个客户端,一个用于password认证一个用于client认证
-        clients.inMemory().withClient("client_1")
-                .resourceIds(DEMO_RESOURCE_ID)
-                .authorizedGrantTypes("client_credentials", "refresh_token")
-                .scopes("select")
-                .authorities("client")
-                .secret("123456")
-                .and().withClient("client_2")
-                .resourceIds(DEMO_RESOURCE_ID)
-                .authorizedGrantTypes("password", "refresh_token")
-                .scopes("select")
-                .authorities("client")
-                .secret("123456");
+        clients.withClientDetails(clientDetails());
+//        clients.inMemory().withClient("client_1")
+//                .resourceIds(DEMO_RESOURCE_ID)
+//                .authorizedGrantTypes("client_credentials", "refresh_token")
+//                .scopes("select")
+//                .authorities("client")
+//                .secret("123456")
+//                .and().withClient("client_2")
+//                .resourceIds(DEMO_RESOURCE_ID)
+//                .authorizedGrantTypes("password", "refresh_token")
+//                .scopes("select")
+//                .authorities("client")
+//                .secret("123456");
     }
 
 
@@ -80,6 +85,11 @@ public class Oauth2AuthorizationServerConfiguration extends AuthorizationServerC
 
     }
 
+    @Bean
+    public ClientDetailsService clientDetails() {
+
+        return new JdbcClientDetailsService(dataSource);
+    }
 
     @Bean
     public TokenStore tokenStore() {
@@ -90,7 +100,7 @@ public class Oauth2AuthorizationServerConfiguration extends AuthorizationServerC
 
     @Bean
     public OauthDefaultTokenServices tokenService() {
-       OauthDefaultTokenServices  tokenServices = new OauthDefaultTokenServices();
+        OauthDefaultTokenServices tokenServices = new OauthDefaultTokenServices();
         //配置token存储
         tokenServices.setTokenStore(tokenStore());
         //开启支持refresh_token，此处如果之前没有配置，启动服务后再配置重启服务，可能会导致不返回token的问题，解决方式：清除redis对应token存储

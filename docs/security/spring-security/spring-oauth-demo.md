@@ -707,5 +707,64 @@ public OauthDefaultTokenServices tokenService() {
 
 
 
+## 9. 从数据库加载 client
+
+实际项目需要重数据库加载客户端信息。
+
+
+
+maven 依赖
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-jdbc</artifactId>
+</dependency>
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+</dependency>
+```
+
+yml 配置
+
+```yml
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/fighting-security?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+```
+
+
+
+```java
+    private final DataSource dataSource;
+    
+	@Override
+    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+        clients.withClientDetails(clientDetails());
+//        clients.inMemory().withClient("client_1")
+//                .resourceIds(DEMO_RESOURCE_ID)
+//                .authorizedGrantTypes("client_credentials", "refresh_token")
+//                .scopes("select")
+//                .authorities("client")
+//                .secret("123456")
+//                .and().withClient("client_2")
+//                .resourceIds(DEMO_RESOURCE_ID)
+//                .authorizedGrantTypes("password", "refresh_token")
+//                .scopes("select")
+//                .authorities("client")
+//                .secret("123456");
+    }
+
+	@Bean
+    public ClientDetailsService clientDetails() {
+        return new JdbcClientDetailsService(dataSource);
+    }
+
+```
+
 
 
