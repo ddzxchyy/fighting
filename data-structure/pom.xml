@@ -8,10 +8,10 @@
         <version>1.0.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <artifactId>design-pattern</artifactId>
+    <artifactId>data-structure</artifactId>
     <version>1.0.0</version>
-    <name>design-pattern</name>
-    <description>设计模式学习</description>
+    <name>data-structure</name>
+    <description>数据结构学习</description>
 
     <properties>
         <java.version>1.8</java.version>

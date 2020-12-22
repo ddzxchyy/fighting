@@ -1,6 +1,5 @@
 package cn.jzq.designpattern.creating.factory.simple;
 
-import javax.smartcardio.Card;
 import java.util.function.Supplier;
 
 public enum CarType {
