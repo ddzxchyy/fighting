@@ -26,6 +26,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>fighting-common</module>
+        <module>data-structure</module>
     </modules>
 
     <dependencyManagement>
