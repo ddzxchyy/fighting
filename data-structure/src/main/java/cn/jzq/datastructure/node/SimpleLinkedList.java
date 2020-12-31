@@ -23,12 +23,11 @@ public class SimpleLinkedList {
 
 
     public void add(int data) {
-        Node addPrevNode = head;
-        while (addPrevNode.next != null) {
-            addPrevNode = addPrevNode.next;
+        Node lastNode = head;
+        while (lastNode.next != null) {
+            lastNode = lastNode.next;
         }
-        Node node = new Node(data, null);
-        addPrevNode.next = node;
+        lastNode.next = new Node(data, null);
         size++;
     }
 
@@ -81,6 +80,9 @@ public class SimpleLinkedList {
         list.add(1);
         list.add(2);
         list.add(3);
+        System.out.println(list.get(0));
+        System.out.println(list.get(1));
+        System.out.println(list.get(2));
         list.remove(0);
         list.remove(0);
         list.remove(1);
