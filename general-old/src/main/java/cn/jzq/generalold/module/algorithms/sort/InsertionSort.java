@@ -1,5 +1,7 @@
 package cn.jzq.generalold.module.algorithms.sort;
 
+import java.util.Arrays;
+
 /**
  * 插入排序
  * 插入排序和冒泡排序的时间复杂度相同，都是 O(n2)，在实际的软件开发里，为什么我们更倾向于使用插入排序算法而不是冒泡排序算法呢？
@@ -37,11 +39,35 @@ public class InsertionSort {
         }
     }
 
+    /**
+     * 2021-01-01 再次实现 加油！
+     *
+     * @param array a
+     */
+    public static void insertSort2(int[] array) {
+        // 从头到尾遍历
+        for (int i = 1; i < array.length; i++) {
+            // 循环不变式的长度
+            int j = i - 1;
+            int key = array[i];
+            // 要插入的 key 和循环不变式的元素比较
+            while (j >= 0 && key < array[j]) {
+                // 将小于 key 的值后移一位（原有的位置为 key，不会丢失）
+                array[j + 1] = array[j];
+                // 往前继续比较
+                j--;
+            }
+            // 插入 key， j + 1 是要插入的位置，加1是因为前面为了继续比较减了1，现在补回来
+            array[j + 1] = key;
+        }
+    }
+
     public static void main(String[] args) {
         int[] arr = ArrayUtil.getRandIntArray(100_000);
         long startTime = System.currentTimeMillis();
-        insertSort(arr);
+        insertSort2(arr);
         long endTime = System.currentTimeMillis();
+        System.out.println(Arrays.toString(arr));
         System.out.println(endTime - startTime);
     }
 }

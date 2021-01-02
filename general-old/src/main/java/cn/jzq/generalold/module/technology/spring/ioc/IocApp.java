@@ -1,8 +1,5 @@
 package cn.jzq.generalold.module.technology.spring.ioc;
 
-import cn.jzq.xqg.uitl.R;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,10 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/spring/ioc")
 public class IocApp {
 
-    @GetMapping("/user/{userId}")
-    public R getUserInfo(@PathVariable("userId") Integer userId) {
-       return R.ok()
-    }
     public static void main(String[] args) {
         Duck duck = new Duck();
 

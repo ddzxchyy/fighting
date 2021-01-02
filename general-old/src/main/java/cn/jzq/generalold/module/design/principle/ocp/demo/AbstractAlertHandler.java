@@ -1,7 +1,8 @@
 package cn.jzq.generalold.module.design.principle.ocp.demo;
 
-import cn.jzq.xqg.module.design.principle.ocp.AlertRule;
-import cn.jzq.xqg.module.design.principle.ocp.Notification;
+
+import cn.jzq.generalold.module.design.principle.ocp.AlertRule;
+import cn.jzq.generalold.module.design.principle.ocp.Notification;
 
 /**
  * 警告类

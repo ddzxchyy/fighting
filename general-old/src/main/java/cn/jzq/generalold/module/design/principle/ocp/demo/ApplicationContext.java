@@ -1,6 +1,6 @@
 package cn.jzq.generalold.module.design.principle.ocp.demo;
-import cn.jzq.xqg.module.design.principle.ocp.AlertRule;
-import cn.jzq.xqg.module.design.principle.ocp.Notification;
+import cn.jzq.generalold.module.design.principle.ocp.AlertRule;
+import cn.jzq.generalold.module.design.principle.ocp.Notification;
 
 /**
  * 负责 Alert 的创建、组装（alertRule 和 notification 的依赖注入）、初始化（添加 handlers）工作。

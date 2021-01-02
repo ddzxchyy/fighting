@@ -5,56 +5,59 @@ import java.util.Arrays;
 /**
  * 归并排序
  *
- * @author jzq
- * @date 2020-04-01
+ * 2021-01-02 重新实现
  */
 public class MergeSort {
 
-    public static void sort(int[] a) {
-        mergeSort(a, 0, a.length);
+    public static void sort(int[] array) {
+        mergeSort(array, 0, array.length - 1);
     }
 
-    private static void mergeSort(int[] a, int p, int r) {
-        if (p + 1 < r) {
-            int q = (p + r) / 2;
-            mergeSort(a, p, q);
-            mergeSort(a, q, r);
-            merge(a, p, q, r);
+    public static void mergeSort(int[] array, int startIndex, int lastIndex) {
+        if (startIndex < lastIndex) {
+            int midIndex = (startIndex + lastIndex) / 2;
+            mergeSort(array, startIndex, midIndex);
+            mergeSort(array, midIndex + 1, lastIndex);
+            merge(array, startIndex, midIndex, lastIndex);
         }
     }
 
     /**
      * 比较两堆扑克牌最顶上的一张牌，将小的那张牌面朝下的放置到输出堆上
      */
-    private static void merge(int[] a, int p, int q, int r) {
-        int leftArrayLength = q - p;
-        int rightArrayLength = r - q;
-        int[] leftArray = new int[leftArrayLength + 1];
-        int[] rightArray = new int[rightArrayLength + 1];
-        for (int i = 0; i < leftArrayLength; i++) {
-            leftArray[i] = a[p + i];
+    public static void merge(int[] array, int startIndex, int midIndex, int lastIndex) {
+        // lastIndex - midIndex + (midIndex - startIndex + 1) 才等于 array.length
+        // java 的除法是向下取整，+1 保证左边不为 0
+        int leftArraySize = midIndex - startIndex + 1;
+        int rightArraySize = lastIndex - midIndex;
+        // 为了存放哨兵 加1
+        int[] leftArray = new int[leftArraySize + 1];
+        int[] rightArray = new int[rightArraySize + 1];
+        // 将数组的划分为 2 个子数组
+        for (int i = 0; i < leftArraySize; i++) {
+            leftArray[i] = array[startIndex + i];
         }
-        for (int j = 0; j < rightArrayLength; j++) {
-            rightArray[j] = a[q + j];
+        for (int i = 0; i < rightArraySize; i++) {
+            // midIndex 是左边数组的最后一个索引
+            rightArray[i] = array[midIndex + 1 + i];
         }
-        leftArray[leftArrayLength] = Integer.MAX_VALUE;
-        rightArray[rightArrayLength] = Integer.MAX_VALUE;
-        // 比较左右数组，将较大值赋给数组a
+        leftArray[leftArraySize] = Integer.MAX_VALUE;
+        rightArray[rightArraySize] = Integer.MAX_VALUE;
         int i = 0;
         int j = 0;
-        for (int k = p; k < r; k++) {
+        for (int k = startIndex; k <= lastIndex; k++) {
             if (leftArray[i] <= rightArray[j]) {
-                a[k] = leftArray[i];
+                array[k] = leftArray[i];
                 i++;
             } else {
-                a[k] = rightArray[j];
+                array[k] = rightArray[j];
                 j++;
             }
         }
     }
 
     public static void main(String[] args) {
-        int[] array = ArrayUtil.getRandIntArray(10);
+        int[] array = ArrayUtil.getRandIntArray(8);
         System.out.println(Arrays.toString(array));
         sort(array);
         System.out.println(Arrays.toString(array));

@@ -1,6 +1,7 @@
 package cn.jzq.generalold.module.technology.spring.ioc;
 
-import cn.jzq.xqg.module.technology.spring.aop.UserEntity;
+
+import cn.jzq.generalold.module.technology.spring.aop.UserEntity;
 
 public interface UserService {
 
