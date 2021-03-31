@@ -12,7 +12,18 @@ import lombok.Data;
 public class BinaryTree {
     Node node;
 
-    Node lastNode;
+    public Node find(int data) {
+        Node p = node;
+        while (p != null) {
+            if (data < p.data) p = p.left;
+            else if (data > p.data) p = p.right;
+            else return p;
+        }
+        return null;
+    }
+
+    public void insert(int data) {
+    }
 
     public void preOrder(Node node) {
         if (node != null) {

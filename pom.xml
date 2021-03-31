@@ -28,6 +28,7 @@
         <module>fighting-common</module>
         <module>data-structure</module>
         <module>general-old</module>
+        <module>javase</module>
     </modules>
 
     <dependencyManagement>

@@ -33,7 +33,7 @@ public class MergeSort {
         // 为了存放哨兵 加1
         int[] leftArray = new int[leftArraySize + 1];
         int[] rightArray = new int[rightArraySize + 1];
-        // 将数组的划分为 2 个子数组
+        // 将数组划分为 2 个子数组
         for (int i = 0; i < leftArraySize; i++) {
             leftArray[i] = array[startIndex + i];
         }
