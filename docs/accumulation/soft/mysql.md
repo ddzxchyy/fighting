@@ -57,8 +57,8 @@ Do you already have another mysqld server running on port: 3306 ?
 ## 登录
 
 1. 找到初始密码，在 data/*.err 文件中
-2.  登录 mysql -u root -p
-3.  修改初始密码 alter` `user` `'root'``@``'localhost'``IDENTIFIED ``BY` `'MyNewPass';';
+2. 登录 mysql -u root -p
+3. 修改初始密码 alter user 'root'@'localhost' IDENTIFIED BY  'MyNewPass'';
 4.  修改密码 update user set authentication_string=password('root') where user='root';
 
 ## 开启远程访问
