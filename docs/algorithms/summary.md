@@ -9,10 +9,10 @@
   * [计数排序](algorithms/sort/countingSort.md)
 
 * [查找](algorithms/search/readme.md)
-  * [二分查找](algorithms/search/binarySearch.md)  
+  * [二分查找](algorithms/search/BinarySearch.md)  
   
 
 
 * [动态规划](algorithms/dynamic/readme.md)
-  * [动态规划](algorithms/dynamic/sort1.md)  
+  * [动态规划](algorithms/dynamic/dp.md)  
 

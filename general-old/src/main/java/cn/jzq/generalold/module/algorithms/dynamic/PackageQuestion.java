@@ -5,9 +5,9 @@ public class PackageQuestion {
 
     public static void main(String[] args) {
         int[] a = {2, 3, 5, 7};
-//        f1(0, 0, a, a.length, 13);
-//        System.out.println(maxW);
-        System.out.println(dyPack1(a, a.length, 13));
+        f1(0, 0, a, a.length, 13);
+        System.out.println(maxW);
+//        System.out.println(dyPack1(a, a.length, 13));
 
     }
 

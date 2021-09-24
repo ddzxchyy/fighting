@@ -157,7 +157,7 @@ UsernamePasswordAuthenticationToken
 
 （3） 认证成功后 AuthenticationManager 身份管理器返回一个被填充满了信息的（包括上面提到的权限信息，身份信息，细节信息，但密码通常会被移除）Authentication实例。
 
-（4） SecurityContextHolder 安全上下文容器将第 3 步填充了信息的 Authentication，通过SecurityContextHolder.getContext().setAuthentication()方法，设置到其中。
+（4） SecurityContextHolder 安全上下文容器将第 3 步填充了信息的 Authentication，通过**SecurityContextHolder.getContext().setAuthentication()**方法，设置到其中。
 
 
 

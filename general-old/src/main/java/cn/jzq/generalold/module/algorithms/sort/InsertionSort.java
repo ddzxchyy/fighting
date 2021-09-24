@@ -47,7 +47,7 @@ public class InsertionSort {
     public static void insertSort2(int[] array) {
         // 从头到尾遍历
         for (int i = 1; i < array.length; i++) {
-            // 循环不变式的长度
+            // 第一个不要比较
             int j = i - 1;
             int key = array[i];
             // 要插入的 key 和循环不变式的元素比较
@@ -63,11 +63,12 @@ public class InsertionSort {
     }
 
     public static void main(String[] args) {
-        int[] arr = ArrayUtil.getRandIntArray(100_000);
-        long startTime = System.currentTimeMillis();
+        int[] arr = ArrayUtil.getRandIntArray(10);
+//        long startTime = System.currentTimeMillis();
         insertSort2(arr);
-        long endTime = System.currentTimeMillis();
         System.out.println(Arrays.toString(arr));
-        System.out.println(endTime - startTime);
+//        long endTime = System.currentTimeMillis();
+//        System.out.println(Arrays.toString(arr));
+//        System.out.println(endTime - startTime);
     }
 }
