@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ExceptionTestController {
 
     @RequestMapping("/illegal")
-    public R IllegalArgumentExceptionTest(){
+    public R IllegalArgumentExceptionTest() {
         throw new IllegalArgumentException("参数错误");
     }
 

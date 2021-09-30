@@ -16,6 +16,7 @@
         <mybatisplus.version>3.3.1</mybatisplus.version>
         <druid.version>1.1.13</druid.version>
         <security.oauth.version>2.3.6.RELEASE</security.oauth.version>
+        <spring.boot.maven.plugin.version>2.5.2</spring.boot.maven.plugin.version>
     </properties>
 
     <modelVersion>4.0.0</modelVersion>
@@ -29,6 +30,7 @@
         <module>data-structure</module>
         <module>general-old</module>
         <module>javase</module>
+        <module>spring-security</module><module>tomcat</module>
     </modules>
 
     <dependencyManagement>

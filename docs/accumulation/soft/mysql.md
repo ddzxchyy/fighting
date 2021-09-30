@@ -24,6 +24,7 @@ max_connect_errors=10
 character-set-server=UTF8MB4
 # 创建新表时将使用的默认存储引擎
 default-storage-engine=INNODB
+sql_mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION
 # 默认使用“mysql_native_password”插件认证
 #mysql_native_password
 default_authentication_plugin=mysql_native_password
@@ -33,6 +34,7 @@ default-character-set=UTF8MB4
 [client]
 # 设置mysql客户端连接服务端时默认使用的端口
 port=3306
+
 
 ```
 
@@ -58,7 +60,7 @@ Do you already have another mysqld server running on port: 3306 ?
 
 1. 找到初始密码，在 data/*.err 文件中
 2. 登录 mysql -u root -p
-3. 修改初始密码 alter user 'root'@'localhost' IDENTIFIED BY  'MyNewPass'';
+3. 修改初始密码 alter user 'root'@'localhost' IDENTIFIED BY  'MyNewPass;
 4.  修改密码 update user set authentication_string=password('root') where user='root';
 
 ## 开启远程访问
@@ -68,10 +70,11 @@ Do you already have another mysqld server running on port: 3306 ?
 ```sql
 USE mysql;
 SELECT User, Authentication_string, Host FROM user;
+create user 'allelink'@'%' identified by 'Wzwl12321';
 # 允许指定 ip 访问
 GRANT ALL PRIVILEGES ON *.* TO 'myuser'@'192.168.1.110'IDENTIFIED BY 'root' WITH GRANT OPTION;
 # 允许所有 ip 访问
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'%'IDENTIFIED BY 'root' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON *.* TO 'allelink'@'%'IDENTIFIED BY 'Wzwl12321' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 # 删除 ip 的访问权限
 delete from user where host = '192.168.1.100';

@@ -1,82 +1,76 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- * <p>
- * https://www.renren.io
- * <p>
- * 版权所有，侵权必究！
- */
-
 package cn.jzq.fightingcommon.uitls;
-
 
 import cn.hutool.json.JSONObject;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.nio.charset.StandardCharsets;
 
 /**
- * 返回数据
+ * 请求返回对象
+ * data 有参数的情况下请按 json 格式返回
+ *
+ * @author jzq
+ * @date 2021-06-23
  */
 @Data
-public class R implements Serializable {
-    private static final long serialVersionUID = 1L;
+@SuppressWarnings("all")
+public class R<T> implements Serializable {
 
+    /**
+     * 0 成功, 500 失败
+     *
+     * @mock @pick(0,500)
+     */
     private Integer code;
 
+    /**
+     * 成功: success, 失败: 错误信息
+     */
     private String msg;
 
-    private Object data;
+    private T data;
 
-    private static JSONObject emptyJson = new JSONObject();
+    public R() {
+    }
+
+    public R(T data) {
+        this.code = 0;
+        this.msg = "success";
+        this.data = data;
+    }
+
+    public static <T> R ok() {
+        return ok(new JSONObject());
+    }
+
+    public static <T> R ok(T t) {
+
+        R<T> res = new R<>();
+        res.setCode(0);
+        res.setMsg("success");
+        res.setData(t);
+        return res;
+    }
+
+
+    public static R error(String msg) {
+        R res = new R<>();
+        res.setCode(500);
+        res.setMsg(msg);
+        return res;
+    }
+
+    public static <T> R error(String msg, T t) {
+        R res = new R<>();
+        res.setCode(500);
+        res.setMsg(msg);
+        res.setData(t);
+        return res;
+    }
 
 
     public static R error() {
-        return error(500, "服务器开小差了");
+        return error("未知异常，请联系管理员");
     }
 
-    public static R error(String msg) {
-        return error(500, msg);
-    }
-
-    public static R fail(String msg) {
-        return error(5000, msg);
-    }
-
-    public static R error(int code, String msg) {
-        R r = new R();
-        r.setCode(code);
-        r.setMsg(new String(msg.getBytes(), StandardCharsets.UTF_8));
-        r.setData(emptyJson);
-        return r;
-    }
-
-    public static R ok(String msg) {
-        R r = new R();
-        r.setCode(0);
-        r.setMsg(msg);
-        return r;
-    }
-
-    public static R ok(Object obj) {
-        R r = new R();
-        r.setCode(0);
-        r.setMsg("success");
-        r.setData(obj);
-        return r;
-    }
-
-    public static R ok() {
-        return new R();
-    }
-
-
-    @Override
-    public String toString() {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.set("data", data);
-        jsonObject.set("msg", msg);
-        jsonObject.set("code", code);
-        return jsonObject.toString();
-    }
 }
