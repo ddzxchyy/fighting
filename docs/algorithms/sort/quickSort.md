@@ -39,7 +39,7 @@ public class QuickSort {
      * 3. 将主元交换合适的位置
      **/
     private static int partition(int[] a, int p, int r) {
-        int pivot = a[r];
+        int c = a[r];
         int i = p - 1;
         for (int j = p; j <= r - 1; j++) {
             if (a[j] <= pivot) {

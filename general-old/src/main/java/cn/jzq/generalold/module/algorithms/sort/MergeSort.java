@@ -61,5 +61,12 @@ public class MergeSort {
         System.out.println(Arrays.toString(array));
         sort(array);
         System.out.println(Arrays.toString(array));
+
+       String s = new String("123");
+        String ss = new String("123");
+        String sss = new String("123");
+        System.out.println(s == ss);
+        System.out.println(sss == ss);
     }
+
 }
