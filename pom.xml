@@ -12,7 +12,7 @@
         <nacos.version>2.2.1.RELEASE</nacos.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <mysql.version>8.0.17</mysql.version>
+        <mysql.version>8.0.28</mysql.version>
         <mybatisplus.version>3.3.1</mybatisplus.version>
         <druid.version>1.1.13</druid.version>
         <security.oauth.version>2.3.6.RELEASE</security.oauth.version>
